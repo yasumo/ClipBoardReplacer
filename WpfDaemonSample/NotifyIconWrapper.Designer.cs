@@ -48,6 +48,7 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem_Open,
             this.toolStripMenuItem_Exit});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
             // 
             // toolStripMenuItem_Open
             // 
