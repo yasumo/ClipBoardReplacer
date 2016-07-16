@@ -25,7 +25,7 @@ namespace ClipBoardReplacer
 
         public ConfigWindow()
         {
-            DataContext = new ConfigWindowViewModel();
+            DataContext = new ConfigWindowViewModel(this);
             InitializeComponent();
         }
 

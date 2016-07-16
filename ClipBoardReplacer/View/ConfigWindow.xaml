@@ -5,17 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClipBoardReplacer"
         mc:Ignorable="d"
-        Title="ConfigWindow" Height="250" Width="300">
+        Title="ConfigWindow" Height="430" Width="500">
     <Grid>
         <StackPanel>
-            <Label Content="正規表現"/>
+            <Label Content="正規表現(検索パターン)"/>
             <TextBox x:Name="RegexTextBox" Height="23" TextWrapping="Wrap" Text="{Binding RegexText, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="正規表現(置換パターン)"/>
+            <TextBox x:Name="ReplaceTextBox" Height="23" TextWrapping="Wrap" Text="{Binding ReplaceText, UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="テスト文字列"/>
             <TextBox x:Name="TestTextBox" Height="23" TextWrapping="Wrap" Text="{Binding TestText, UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="テスト結果"/>
             <TextBox x:Name="ResultTextBox" Height="23" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding ResultText, UpdateSourceTrigger=PropertyChanged}"/>
             <Label Content="クリップボード"/>
-            <TextBox x:Name="ClipTextBox" Height="23" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding ClipText, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox x:Name="ClipTextBox" Height="100" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding ClipText, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <WrapPanel HorizontalAlignment="Center" Height="50">
+                <Button x:Name="start" Content="Start" Width="100" Margin="10" Height="30" Command="{Binding StartCommand}" />
+                <Button x:Name="end" Content="Stop" Width="100" Margin="10" Height="30"  Command="{Binding StopCommand}"/>
+            </WrapPanel>
         </StackPanel>
     </Grid>
 </Window>

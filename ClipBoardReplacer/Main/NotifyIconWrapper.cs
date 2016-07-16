@@ -12,7 +12,6 @@ namespace ClipBoardReplacer
 {
     public partial class NotifyIconWrapper : Component
     {
-        ClipboardWatcher clipboardWatcher = null;
 
         /// <summary>
         /// NotifyIconWrapper クラス を生成、初期化します。
@@ -49,11 +48,8 @@ namespace ClipBoardReplacer
             var wnd = new ConfigWindow();
             wnd.Show();
 
-            Console.WriteLine(wnd);
+            Console.WriteLine(new System.Windows.Interop.WindowInteropHelper(wnd).Handle);
 
-            //クリップボード監視
-            this.clipboardWatcher = new ClipboardWatcher(new System.Windows.Interop.WindowInteropHelper(wnd).Handle);
-            this.clipboardWatcher.DrawClipboard += clipboardWatcher_DrawClipboard;
         }
 
         /// <summary>
@@ -67,17 +63,5 @@ namespace ClipBoardReplacer
             Application.Current.Shutdown();
         }
 
-        void clipboardWatcher_DrawClipboard(object sender, System.EventArgs e)
-        {
-            if (Clipboard.ContainsText())
-            {
-                Console.WriteLine(Clipboard.GetText());
-            }
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            this.clipboardWatcher.Dispose();
-        }
     }
 }
