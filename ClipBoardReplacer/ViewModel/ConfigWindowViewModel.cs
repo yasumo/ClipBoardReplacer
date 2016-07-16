@@ -16,25 +16,32 @@ namespace ClipBoardReplacer.ViewModel
 
         private void chageProperty(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Name")
-            {
-                Age = "aaa";
-            }
             Console.WriteLine(e.PropertyName);
         }
 
-        private string name;
-        public string Name
+        private string regexText;
+        public string RegexText
         {
-            get { return name; }
-            set { this.SetProperty(ref this.name, value); }
+            get { return regexText; }
+            set { this.SetProperty(ref this.regexText, value); }
         }
-
-        private string age;
-        public string Age
+        private string resultText;
+        public string ResultText
         {
-            get { return age; }
-            set { this.SetProperty(ref this.age, value); }
+            get { return resultText; }
+            set { this.SetProperty(ref this.resultText, value); }
+        }
+        private string testText;
+        public string TestText
+        {
+            get { return testText; }
+            set { this.SetProperty(ref this.testText, value); }
+        }
+        private string clipText;
+        public string ClipText
+        {
+            get { return clipText; }
+            set { this.SetProperty(ref this.clipText, value); }
         }
     }
 }

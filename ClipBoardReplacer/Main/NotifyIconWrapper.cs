@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClipBoardReplacer.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -11,11 +12,14 @@ namespace ClipBoardReplacer
 {
     public partial class NotifyIconWrapper : Component
     {
+        ClipboardWatcher clipboardWatcher = null;
+
         /// <summary>
         /// NotifyIconWrapper クラス を生成、初期化します。
         /// </summary>
         public NotifyIconWrapper()
         {
+
             // コンポーネントの初期化
             this.InitializeComponent();
 
@@ -34,7 +38,6 @@ namespace ClipBoardReplacer
 
             this.InitializeComponent();
         }
-
         /// <summary>
         /// コンテキストメニュー "表示" を選択したとき呼ばれます。
         /// </summary>
@@ -42,9 +45,15 @@ namespace ClipBoardReplacer
         /// <param name="e">イベントデータ</param>
         private void toolStripMenuItem_Open_Click(object sender, EventArgs e)
         {
-            // MainWindow を生成、表示
+            // MainWindow を生成、設定画面
             var wnd = new ConfigWindow();
             wnd.Show();
+
+            Console.WriteLine(wnd);
+
+            //クリップボード監視
+            this.clipboardWatcher = new ClipboardWatcher(new System.Windows.Interop.WindowInteropHelper(wnd).Handle);
+            this.clipboardWatcher.DrawClipboard += clipboardWatcher_DrawClipboard;
         }
 
         /// <summary>
@@ -56,6 +65,19 @@ namespace ClipBoardReplacer
         {
             // 現在のアプリケーションを終了
             Application.Current.Shutdown();
+        }
+
+        void clipboardWatcher_DrawClipboard(object sender, System.EventArgs e)
+        {
+            if (Clipboard.ContainsText())
+            {
+                Console.WriteLine(Clipboard.GetText());
+            }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.clipboardWatcher.Dispose();
         }
     }
 }
