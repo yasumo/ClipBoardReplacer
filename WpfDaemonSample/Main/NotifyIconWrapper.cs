@@ -43,7 +43,7 @@ namespace ClipBoardReplacer
         private void toolStripMenuItem_Open_Click(object sender, EventArgs e)
         {
             // MainWindow を生成、表示
-            var wnd = new MainWindow();
+            var wnd = new ConfigWindow();
             wnd.Show();
         }
 
